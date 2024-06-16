@@ -1,0 +1,167 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhu5qyq6ln7ph"]
+
+[ext_resource type="Theme" uid="uid://d036p46vckaa7" path="res://addons/sandprism-project-workshop-browser/project_card_style.tres" id="1_nvn0e"]
+[ext_resource type="Texture2D" uid="uid://dcjiam5uco6me" path="res://addons/sandprism-project-workshop-browser/assets/icons/favorites.svg" id="2_66fow"]
+[ext_resource type="Script" path="res://addons/sandprism-project-workshop-browser/project_card.gd" id="2_oo54k"]
+[ext_resource type="Texture2D" uid="uid://caafionbfr1yf" path="res://addons/sandprism-project-workshop-browser/assets/icons/svg-edited.svg" id="3_qrq3p"]
+[ext_resource type="Texture2D" uid="uid://bqhovrwwh8t7e" path="res://addons/sandprism-project-workshop-browser/assets/icons/check.svg" id="4_iwegd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3kxjh"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_va28b"]
+font_size = 14
+font_color = Color(1, 1, 1, 0.627451)
+
+[node name="ProjectCard" type="Panel"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_nvn0e")
+script = ExtResource("2_oo54k")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+tooltip_text = "Very cool project, with such a long name that it's hard to make a card for it"
+mouse_filter = 1
+text = "Very cool project, with such a long name that it's hard to make a card for it"
+label_settings = SubResource("LabelSettings_3kxjh")
+autowrap_mode = 2
+text_overrun_behavior = 4
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Author" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+text = "by @Manonox"
+label_settings = SubResource("LabelSettings_va28b")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Control2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/Control2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/Control2"]
+layout_mode = 2
+
+[node name="StarCount" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Control2/Control2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Star" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/Control2/Control2"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Star"
+theme_override_colors/icon_pressed_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 14
+toggle_mode = true
+icon = ExtResource("2_66fow")
+flat = true
+alignment = 2
+icon_alignment = 2
+vertical_icon_alignment = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/Control2/Control2"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="ForkCount" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Control2/Control2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+text = "999"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/Control2/Control2"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+
+[node name="Fork" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/Control2/Control2/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Fork / Download"
+theme_override_font_sizes/font_size = 14
+icon = ExtResource("3_qrq3p")
+flat = true
+alignment = 2
+icon_alignment = 2
+vertical_icon_alignment = 2
+
+[node name="OfficialCheckContainer" type="Control" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="OfficialCheck" type="TextureRect" parent="MarginContainer/OfficialCheckContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_iwegd")
+expand_mode = 4
+stretch_mode = 4

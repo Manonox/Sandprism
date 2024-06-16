@@ -1,0 +1,147 @@
+[gd_scene load_steps=22 format=3 uid="uid://brc2vngkywha1"]
+
+[ext_resource type="Script" path="res://autoload/lua_environment/lua_environment.gd" id="1_qmvoy"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/override_typeof.gd" id="2_1t78e"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/init_require.gd" id="3_bgsnw"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/require.gd" id="4_ov3j4"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/vector2.gd" id="5_1s4on"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/vector3.gd" id="6_lt2r4"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/vector4.gd" id="7_hjtk5"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/color.gd" id="8_ofsae"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/angle.gd" id="9_yl015"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/libraries.gd" id="10_5sqnj"]
+[ext_resource type="Script" path="res://autoload/lua_environment/libraries/script.gd" id="11_c1tu5"]
+[ext_resource type="Script" path="res://autoload/lua_environment/mixins/transform.gd" id="12_vfvkd"]
+[ext_resource type="Script" path="res://autoload/lua_environment/mixins/rigid_body.gd" id="13_bsxm2"]
+[ext_resource type="Script" path="res://autoload/lua_environment/mixins/character_body.gd" id="14_ulw1l"]
+[ext_resource type="Script" path="res://autoload/lua_environment/mixins/digital_screen.gd" id="15_po11w"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/entities.gd" id="16_u1vfk"]
+[ext_resource type="Script" path="res://autoload/lua_environment/entities/player.gd" id="17_3i1pg"]
+[ext_resource type="Script" path="res://autoload/lua_environment/entities/digital_screen_prop.gd" id="18_uy0mh"]
+
+[sub_resource type="GDScript" id="GDScript_2axcv"]
+resource_name = "cock"
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_3xyrf"]
+resource_name = "sghsehsweh"
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_s26mw"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="LuaEnvironment" type="Node"]
+script = ExtResource("1_qmvoy")
+
+[node name="LuauVM (Ravenmind)" type="LuauVM" parent="."]
+
+[node name="Stages" type="Node" parent="."]
+
+[node name="OverrideTypeof" type="Node" parent="Stages"]
+script = ExtResource("2_1t78e")
+
+[node name="InitializationRequire" type="Node" parent="Stages"]
+script = ExtResource("3_bgsnw")
+
+[node name="Initialize" type="Node" parent="Stages"]
+script = SubResource("GDScript_2axcv")
+
+[node name="LoadTypes" type="Node" parent="Stages"]
+script = SubResource("GDScript_3xyrf")
+
+[node name="LoadLibraries" type="Node" parent="Stages"]
+script = SubResource("GDScript_3xyrf")
+
+[node name="LoadMixins" type="Node" parent="Stages"]
+script = SubResource("GDScript_3xyrf")
+
+[node name="LoadEntities" type="Node" parent="Stages"]
+script = SubResource("GDScript_3xyrf")
+
+[node name="Require" type="Node" parent="Stages"]
+script = ExtResource("4_ov3j4")
+
+[node name="Types" type="Node" parent="."]
+
+[node name="Vector2" type="Node" parent="Types"]
+script = ExtResource("5_1s4on")
+
+[node name="Vector3" type="Node" parent="Types"]
+script = ExtResource("6_lt2r4")
+
+[node name="Vector4" type="Node" parent="Types"]
+script = ExtResource("7_hjtk5")
+
+[node name="Color" type="Node" parent="Types"]
+script = ExtResource("8_ofsae")
+
+[node name="Angle" type="Node" parent="Types"]
+script = ExtResource("9_yl015")
+
+[node name="Libraries" type="Node" parent="."]
+script = ExtResource("10_5sqnj")
+
+[node name="Engine" type="Node" parent="Libraries"]
+script = SubResource("GDScript_s26mw")
+
+[node name="Script" type="Node" parent="Libraries"]
+script = ExtResource("11_c1tu5")
+
+[node name="Mixins" type="Node" parent="."]
+
+[node name="Transform" type="Node" parent="Mixins"]
+script = ExtResource("12_vfvkd")
+
+[node name="RigidBody" type="Node" parent="Mixins"]
+script = ExtResource("13_bsxm2")
+
+[node name="CharacterBody" type="Node" parent="Mixins"]
+script = ExtResource("14_ulw1l")
+
+[node name="DigitalScreen" type="Node" parent="Mixins"]
+script = ExtResource("15_po11w")
+
+[node name="Entities" type="Node" parent="."]
+script = ExtResource("16_u1vfk")
+
+[node name="Player" type="Node" parent="Entities"]
+script = ExtResource("17_3i1pg")
+mixins = Array[StringName]([&"Transform", &"CharacterBody"])
+
+[node name="DigitalScreenProp" type="Node" parent="Entities"]
+script = ExtResource("18_uy0mh")
+mixins = Array[StringName]([&"Transform", &"RigidBody", &"DigitalScreen"])
+spawnable = true

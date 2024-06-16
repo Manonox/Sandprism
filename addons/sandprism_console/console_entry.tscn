@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://5sj88myxcdhr"]
+
+[ext_resource type="Script" path="res://addons/sandprism_console/console_entry.gd" id="1_bkvhm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ynif7"]
+
+[node name="RichTextLabel" type="RichTextLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+focus_mode = 2
+theme_override_colors/selection_color = Color(0.67451, 0.67451, 0.878431, 0.529412)
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ynif7")
+fit_content = true
+scroll_active = false
+autowrap_mode = 1
+selection_enabled = true
+script = ExtResource("1_bkvhm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.25098)

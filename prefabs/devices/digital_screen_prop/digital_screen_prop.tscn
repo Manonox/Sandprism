@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://4k6l2smckhc2"]
+
+[ext_resource type="Script" path="res://prefabs/devices/digital_screen_prop/digital_screen_prop.gd" id="1_gnaff"]
+[ext_resource type="PackedScene" uid="uid://b2go35j4fghfi" path="res://components/entity_component/entity_component.tscn" id="2_f4b1e"]
+[ext_resource type="PackedScene" uid="uid://dsg86jbopmlyq" path="res://components/lua_component/lua_component.tscn" id="3_7nujy"]
+[ext_resource type="Shader" path="res://prefabs/devices/digital_screen_prop/digital_screen_shader.gdshader" id="4_habak"]
+[ext_resource type="Texture2D" uid="uid://j5nj76byolck" path="res://assets/icon.svg" id="5_1lhe7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kwvxx"]
+render_priority = 0
+shader = ExtResource("4_habak")
+shader_parameter/resolution = Vector2i(512, 512)
+shader_parameter/transparent = false
+shader_parameter/pixelation_enabled = true
+shader_parameter/content_texture = ExtResource("5_1lhe7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1dx6u"]
+size = Vector3(1, 1, 0.01)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lf8ou"]
+properties/0/path = NodePath(".:size")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:linear_velocity")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:angular_velocity")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:resolution")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_x4qgu"]
+size = Vector3(1, 1, 0.01)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fbs8a"]
+render_priority = 0
+shader = ExtResource("4_habak")
+shader_parameter/resolution = Vector2i(256, 256)
+shader_parameter/transparent = false
+shader_parameter/pixelation_enabled = false
+shader_parameter/content_texture = ExtResource("5_1lhe7")
+
+[sub_resource type="QuadMesh" id="QuadMesh_k6kfa"]
+
+[node name="DigitalScreen" type="RigidBody3D"]
+continuous_cd = true
+script = ExtResource("1_gnaff")
+screen_material = SubResource("ShaderMaterial_kwvxx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1dx6u")
+
+[node name="EntityComponent" parent="." node_paths=PackedStringArray("multiplayer_synchronizer") instance=ExtResource("2_f4b1e")]
+id = &"DigitalScreenProp"
+multiplayer_synchronizer = NodePath("../MultiplayerSynchronizer")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_lf8ou")
+
+[node name="LuaComponent" parent="." instance=ExtResource("3_7nujy")]
+entity_type = &"DigitalScreenProp"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_x4qgu")
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.005)
+material_override = SubResource("ShaderMaterial_fbs8a")
+mesh = SubResource("QuadMesh_k6kfa")

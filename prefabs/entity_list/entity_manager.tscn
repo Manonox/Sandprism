@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb6rx3guecimj"]
+
+[ext_resource type="Script" path="res://prefabs/entity_list/entity_manager.gd" id="1_a1ble"]
+
+[node name="EntityManager" type="Node"]
+script = ExtResource("1_a1ble")

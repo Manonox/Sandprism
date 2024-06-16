@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://clfhexcvuejou"]
+
+[ext_resource type="Script" path="res://prefabs/project_editor/project_editor.gd" id="1_wq8gd"]
+[ext_resource type="PackedScene" uid="uid://bqnn4e66wytv" path="res://prefabs/luau_edit/luau_edit.tscn" id="2_b8twd"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_u5qng"]
+resource_local_to_scene = true
+number_color = Color(0.709804, 0.807843, 0.658824, 1)
+symbol_color = Color(0.65098, 0.8, 0.878431, 1)
+function_color = Color(0.862745, 0.862745, 0.666667, 1)
+member_variable_color = Color(0.611765, 0.862745, 0.996078, 1)
+
+[node name="ProjectEditor" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wq8gd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="TabBar" parent="VBoxContainer"]
+layout_mode = 2
+tab_count = 1
+tab_0/title = "main.lua"
+
+[node name="LuauEdit" parent="VBoxContainer" instance=ExtResource("2_b8twd")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+syntax_highlighter = SubResource("CodeHighlighter_u5qng")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="RunButton" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+text = "Run"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/RunButton" to="." method="_on_run_button_pressed"]

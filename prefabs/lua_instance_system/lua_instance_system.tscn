@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgkiekretjbrg"]
+
+[ext_resource type="Script" path="res://prefabs/lua_instance_system/lua_instance_system.gd" id="1_0ncry"]
+[ext_resource type="PackedScene" uid="uid://bugxsskkqk0fo" path="res://prefabs/lua_instance/lua_instance.tscn" id="2_grtmj"]
+
+[node name="LuaInstanceSystem" type="Node"]
+script = ExtResource("1_0ncry")
+lua_instance_scene = ExtResource("2_grtmj")
+
+[node name="QueueTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="QueueTimer" to="." method="_on_queue_timer_timeout"]

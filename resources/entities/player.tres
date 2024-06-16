@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EntityListEntity" load_steps=3 format=3 uid="uid://7sffekaq0y33"]
+
+[ext_resource type="PackedScene" uid="uid://bbc3wfcmim2dn" path="res://prefabs/player/player.tscn" id="1_0pcp2"]
+[ext_resource type="Script" path="res://prefabs/entity_list/entity_list_entity.gd" id="1_800pp"]
+
+[resource]
+script = ExtResource("1_800pp")
+id = &"Player"
+prefab = ExtResource("1_0pcp2")

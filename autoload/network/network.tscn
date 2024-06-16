@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c66ikltmdbc3k"]
+
+[ext_resource type="Script" path="res://autoload/network/network.gd" id="1_aplm4"]
+[ext_resource type="Resource" uid="uid://bff02sj43ix7m" path="res://resources/network/default_network_emulation_parameters.tres" id="2_byy1y"]
+
+[node name="Network" type="Node"]
+script = ExtResource("1_aplm4")
+network_emulation_parameters = ExtResource("2_byy1y")

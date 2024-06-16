@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsg86jbopmlyq"]
+
+[ext_resource type="Script" path="res://components/lua_component/lua_component.gd" id="1_bh47w"]
+
+[node name="LuaComponent" type="Node"]
+script = ExtResource("1_bh47w")

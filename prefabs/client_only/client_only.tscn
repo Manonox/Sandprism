@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://buonuolkn03hx"]
+
+[ext_resource type="Script" path="res://prefabs/client_only/client_only.gd" id="1_7pg22"]
+[ext_resource type="PackedScene" uid="uid://bu26sb75y7isj" path="res://prefabs/player_hud/player_hud.tscn" id="1_m1sdp"]
+[ext_resource type="PackedScene" uid="uid://p7ijfxvlwnmr" path="res://addons/sandprism_console/console_overlay.tscn" id="3_5j43m"]
+[ext_resource type="Script" path="res://prefabs/client_only/lua_console_receiver.gd" id="3_rrf0h"]
+
+[node name="ClientOnly" type="Node"]
+script = ExtResource("1_7pg22")
+
+[node name="LuaConsoleReceiver" type="Node" parent="."]
+script = ExtResource("3_rrf0h")
+client_color = Color(1, 0.670588, 0.431373, 1)
+server_color = Color(0.341176, 0.568627, 1, 1)
+
+[node name="PlayerHUD" parent="." instance=ExtResource("1_m1sdp")]
+
+[node name="ConsoleOverlay" parent="." instance=ExtResource("3_5j43m")]
+unique_name_in_owner = true
+visible = false

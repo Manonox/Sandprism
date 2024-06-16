@@ -1,0 +1,106 @@
+[gd_scene load_steps=9 format=3 uid="uid://m281lfqolivg"]
+
+[ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_l8yye"]
+[ext_resource type="Shader" path="res://scenes/menu/menu.gdshader" id="1_u7f52"]
+[ext_resource type="PackedScene" uid="uid://cgsbcbkhvvh8m" path="res://scenes/main/main.tscn" id="2_vr5a0"]
+
+[sub_resource type="Gradient" id="Gradient_exkw4"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0.146341, 0.87108)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0maiq"]
+noise_type = 2
+frequency = 0.0023
+domain_warp_frequency = 0.01
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_npp5b"]
+seamless = true
+color_ramp = SubResource("Gradient_exkw4")
+noise = SubResource("FastNoiseLite_0maiq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qc83m"]
+shader = ExtResource("1_u7f52")
+shader_parameter/noise = SubResource("NoiseTexture2D_npp5b")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43oh8"]
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.11, 0.11, 0.11, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l8yye")
+game_scene = ExtResource("2_vr5a0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qc83m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_43oh8")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="HostButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Host"
+
+[node name="ConnectGroup" type="VBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -1
+
+[node name="ConnectButton" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/ConnectGroup"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Connect
+"
+
+[node name="IPLineEdit" type="LineEdit" parent="CenterContainer/MarginContainer/VBoxContainer/ConnectGroup"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "IP"
+alignment = 1
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/ConnectGroup/ConnectButton" to="." method="_on_connect_button_pressed"]

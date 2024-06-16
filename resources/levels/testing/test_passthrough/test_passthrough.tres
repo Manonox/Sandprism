@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Level" load_steps=3 format=3 uid="uid://bhbpxmjiu3yug"]
+
+[ext_resource type="PackedScene" uid="uid://cn22nta4yohs2" path="res://resources/levels/testing/test_passthrough/test_passthrough.tscn" id="1_ojwyk"]
+[ext_resource type="Script" path="res://classes/level.gd" id="2_jonl7"]
+
+[resource]
+script = ExtResource("2_jonl7")
+packed_scene = ExtResource("1_ojwyk")
+path = "res://resources/levels/testing/test_passthrough/test_passthrough.tscn"

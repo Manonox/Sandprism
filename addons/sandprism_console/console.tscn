@@ -1,0 +1,114 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfx57rau8tlon"]
+
+[ext_resource type="Script" path="res://addons/sandprism_console/console.gd" id="1_n0g8g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wimsv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u6s83"]
+
+[node name="Console" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_n0g8g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Log" type="ColorRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.501961)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Log"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Log/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Entries" type="VBoxContainer" parent="VBoxContainer/Log/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+alignment = 2
+
+[node name="ScrollDownButton" type="Button" parent="VBoxContainer/Log"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -10.0
+offset_right = 64.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wimsv")
+text_overrun_behavior = 1
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="VBoxContainer/Log/ScrollDownButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -16.0
+offset_right = 20.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Input" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Input"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u6s83")
+placeholder_text = "Enter a command..."
+flat = true
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="gui_input" from="VBoxContainer/Log/MarginContainer/ScrollContainer/Entries" to="." method="_inner_gui_input"]
+[connection signal="pressed" from="VBoxContainer/Log/ScrollDownButton" to="." method="_on_scroll_down_button_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/Input/LineEdit" to="." method="_on_line_edit_text_submitted"]

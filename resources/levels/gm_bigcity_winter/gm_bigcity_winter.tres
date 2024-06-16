@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Level" load_steps=3 format=3 uid="uid://cx0oo1gieqiev"]
+
+[ext_resource type="PackedScene" uid="uid://w4sk2p34ki13" path="res://resources/levels/gm_bigcity_winter/gm_bigcity_winter.tscn" id="1_2mefe"]
+[ext_resource type="Script" path="res://classes/level.gd" id="1_03eve"]
+
+[resource]
+script = ExtResource("1_03eve")
+packed_scene = ExtResource("1_2mefe")
+path = "res://resources/levels/gm_bigcity_winter/gm_bigcity_winter.tscn"

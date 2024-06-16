@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqnn4e66wytv"]
+
+[ext_resource type="FontFile" uid="uid://d4htcegyhnnf6" path="res://assets/fonts/ttf/JetBrainsMono-Medium.ttf" id="1_b4hu4"]
+[ext_resource type="Script" path="res://prefabs/luau_edit/luau_edit.gd" id="2_hnqyj"]
+
+[sub_resource type="Theme" id="Theme_x3mge"]
+default_font = ExtResource("1_b4hu4")
+default_font_size = 13
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_bub58"]
+resource_local_to_scene = true
+number_color = Color(0.709804, 0.807843, 0.658824, 1)
+symbol_color = Color(0.65098, 0.8, 0.878431, 1)
+function_color = Color(0.862745, 0.862745, 0.666667, 1)
+member_variable_color = Color(0.611765, 0.862745, 0.996078, 1)
+
+[node name="LuauEdit" type="CodeEdit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_x3mge")
+text = "print(\"Hello world!\")
+"
+placeholder_text = "Your code goes here..."
+scroll_past_end_of_file = true
+minimap_draw = true
+syntax_highlighter = SubResource("CodeHighlighter_bub58")
+highlight_all_occurrences = true
+highlight_current_line = true
+draw_tabs = true
+line_folding = true
+line_length_guidelines = Array[int]([96, 64])
+gutters_draw_line_numbers = true
+gutters_draw_fold_gutter = true
+script = ExtResource("2_hnqyj")

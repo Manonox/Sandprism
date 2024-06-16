@@ -1,0 +1,83 @@
+[gd_scene load_steps=19 format=3 uid="uid://wwavao1wq0k0"]
+
+[ext_resource type="Script" path="res://autoload/lua_environment/lua_environment.gd" id="1_wea18"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/vector3.gd" id="2_0wtgw"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/init_require.gd" id="2_ir5k0"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/override_typeof.gd" id="2_qj6m6"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/require.gd" id="3_1ndvf"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/vector2.gd" id="5_5dwks"]
+[ext_resource type="Script" path="res://autoload/lua_environment/mixins/transform.gd" id="5_rdrkk"]
+[ext_resource type="Script" path="res://autoload/lua_environment/mixins/rigid_body.gd" id="6_234k1"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/entities.gd" id="7_b7c5a"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/vector4.gd" id="7_q60h2"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/color.gd" id="8_o1yqx"]
+[ext_resource type="Script" path="res://autoload/lua_environment/types/angle.gd" id="9_n4dh7"]
+[ext_resource type="Script" path="res://autoload/lua_environment/libraries/script.gd" id="10_ol0ts"]
+[ext_resource type="Script" path="res://autoload/lua_environment/utils/libraries.gd" id="10_xk673"]
+[ext_resource type="Script" path="res://autoload/lua_environment/mixins/digital_screen.gd" id="11_jrogy"]
+[ext_resource type="Script" path="res://autoload/lua_environment/mixins/character_body.gd" id="14_gybus"]
+[ext_resource type="Script" path="res://autoload/lua_environment/entities/digital_screen_prop.gd" id="15_4n3my"]
+[ext_resource type="Script" path="res://autoload/lua_environment/entities/player.gd" id="15_q8goi"]
+
+[node name="LuaEnvironment" type="Node"]
+script = ExtResource("1_wea18")
+
+[node name="LuauVM (Ravenmind)" type="LuauVM" parent="."]
+
+[node name="OverrideTypeof" type="Node" parent="."]
+script = ExtResource("2_qj6m6")
+
+[node name="InitRequire" type="Node" parent="."]
+script = ExtResource("2_ir5k0")
+
+[node name="Require" type="Node" parent="."]
+script = ExtResource("3_1ndvf")
+
+[node name="Types" type="Node" parent="."]
+
+[node name="Vector2" type="Node" parent="Types"]
+script = ExtResource("5_5dwks")
+
+[node name="Vector3" type="Node" parent="Types"]
+script = ExtResource("2_0wtgw")
+
+[node name="Vector4" type="Node" parent="Types"]
+script = ExtResource("7_q60h2")
+
+[node name="Color" type="Node" parent="Types"]
+script = ExtResource("8_o1yqx")
+
+[node name="Angle" type="Node" parent="Types"]
+script = ExtResource("9_n4dh7")
+
+[node name="Libraries" type="Node" parent="."]
+script = ExtResource("10_xk673")
+
+[node name="Script" type="Node" parent="Libraries"]
+script = ExtResource("10_ol0ts")
+
+[node name="Mixins" type="Node" parent="."]
+
+[node name="Transform" type="Node" parent="Mixins"]
+script = ExtResource("5_rdrkk")
+
+[node name="RigidBody" type="Node" parent="Mixins"]
+script = ExtResource("6_234k1")
+
+[node name="CharacterBody" type="Node" parent="Mixins"]
+script = ExtResource("14_gybus")
+
+[node name="DigitalScreen" type="Node" parent="Mixins"]
+script = ExtResource("11_jrogy")
+
+[node name="Entities" type="Node" parent="."]
+script = ExtResource("7_b7c5a")
+
+[node name="Player" type="Node" parent="Entities"]
+script = ExtResource("15_q8goi")
+mixins = Array[StringName]([&"Transform", &"CharacterBody"])
+
+[node name="DigitalScreenProp" type="Node" parent="Entities"]
+script = ExtResource("15_4n3my")
+mixins = Array[StringName]([&"Transform", &"RigidBody", &"DigitalScreen"])
+spawnable = true

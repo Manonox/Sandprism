@@ -1,0 +1,107 @@
+[gd_scene load_steps=6 format=3 uid="uid://p7ijfxvlwnmr"]
+
+[ext_resource type="Script" path="res://addons/sandprism_console/console_overlay.gd" id="1_steoq"]
+[ext_resource type="PackedScene" uid="uid://dfx57rau8tlon" path="res://addons/sandprism_console/console.tscn" id="2_feimv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gvnia"]
+font_size = 14
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ah0j8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74fog"]
+
+[node name="ConsoleOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_steoq")
+
+[node name="Backfade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ConsolePanel" type="Panel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ConsolePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ConsolePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 4
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/ConsolePanel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Console"
+label_settings = SubResource("LabelSettings_gvnia")
+
+[node name="Console" parent="MarginContainer/HBoxContainer/ConsolePanel/VBoxContainer" instance=ExtResource("2_feimv")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TreePanel" type="Panel" parent="MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/TreePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer/TreePanel/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Tree" type="Tree" parent="MarginContainer/HBoxContainer/TreePanel/MarginContainer/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ah0j8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_74fog")
+select_mode = 2
+scroll_horizontal_enabled = false

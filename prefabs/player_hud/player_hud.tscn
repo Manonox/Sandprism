@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu26sb75y7isj"]
+
+[ext_resource type="Script" path="res://prefabs/player_hud/player_hud.gd" id="1_ft745"]
+[ext_resource type="PackedScene" uid="uid://dc1yjil3ar2e6" path="res://addons/crosshair/crosshair.tscn" id="1_gixl2"]
+[ext_resource type="PackedScene" uid="uid://de1jd4qfr40e1" path="res://addons/mouse_capture/mouse_capture.tscn" id="2_cem2a"]
+[ext_resource type="PackedScene" uid="uid://clfhexcvuejou" path="res://prefabs/project_editor/project_editor.tscn" id="4_j2bif"]
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ft745")
+
+[node name="MouseCapture" parent="." instance=ExtResource("2_cem2a")]
+layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Crosshair" parent="CenterContainer/Control" instance=ExtResource("1_gixl2")]
+
+[node name="PeerIDLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 15.0
+offset_right = 57.0
+offset_bottom = 38.0
+
+[node name="CurrentTickLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 39.0
+offset_right = 48.0
+offset_bottom = 62.0
+
+[node name="ProjectEditor" parent="." instance=ExtResource("4_j2bif")]
+visible = false
+layout_mode = 1

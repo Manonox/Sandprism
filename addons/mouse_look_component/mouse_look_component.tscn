@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0lmm5sbrk60h"]
+
+[ext_resource type="Script" path="res://addons/mouse_look_component/mouse_look_component.gd" id="1_wwoth"]
+
+[node name="MouseLookComponent" type="Node3D"]
+script = ExtResource("1_wwoth")

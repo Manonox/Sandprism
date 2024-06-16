@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=3 uid="uid://bythnpitcx62d"]
+
+[ext_resource type="Script" path="res://prefabs/entity_list/entity_list.gd" id="1_dpja2"]
+[ext_resource type="PackedScene" uid="uid://bb6rx3guecimj" path="res://prefabs/entity_list/entity_manager.tscn" id="2_58itg"]
+[ext_resource type="PackedScene" uid="uid://nvxrdr1ac0xp" path="res://prefabs/subspace_manager/subspace_manager.tscn" id="2_l0r4g"]
+[ext_resource type="PackedScene" uid="uid://cwh4re5f2owh2" path="res://prefabs/pawn_system/pawn_system.tscn" id="3_3ma0t"]
+[ext_resource type="Resource" uid="uid://1etsa7jgd23n" path="res://resources/entities/lua_instance.tres" id="3_4iorr"]
+[ext_resource type="Resource" uid="uid://cqtmo1i27027w" path="res://resources/entities/digital_screen_prop.tres" id="4_8f3lf"]
+[ext_resource type="Resource" uid="uid://7sffekaq0y33" path="res://resources/entities/player.tres" id="5_noqsx"]
+[ext_resource type="PackedScene" uid="uid://c8utqkbrilx36" path="res://prefabs/replication_system/replication_system.tscn" id="6_6td1r"]
+[ext_resource type="PackedScene" uid="uid://bjsu6unly8epp" path="res://prefabs/console_system/console_system.tscn" id="9_60s1p"]
+
+[node name="EntityList" type="Node" node_paths=PackedStringArray("subspace_manager", "entity_manager", "pawn_system", "replication_system", "console_system")]
+script = ExtResource("1_dpja2")
+available_entities = Array[Resource("res://prefabs/entity_list/entity_list_entity.gd")]([ExtResource("5_noqsx"), ExtResource("3_4iorr"), ExtResource("4_8f3lf")])
+subspace_manager = NodePath("SubspaceManager")
+entity_manager = NodePath("EntityManager")
+pawn_system = NodePath("PawnSystem")
+replication_system = NodePath("ReplicationSystem")
+console_system = NodePath("ConsoleSystem")
+
+[node name="SyncTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="SubspaceManager" parent="." node_paths=PackedStringArray("entity_list") instance=ExtResource("2_l0r4g")]
+entity_list = NodePath("..")
+
+[node name="EntityManager" parent="." node_paths=PackedStringArray("entity_list") instance=ExtResource("2_58itg")]
+entity_list = NodePath("..")
+
+[node name="PawnSystem" parent="." node_paths=PackedStringArray("entity_list", "subspace_manager") instance=ExtResource("3_3ma0t")]
+player_pawn_entity = ExtResource("5_noqsx")
+entity_list = NodePath("..")
+subspace_manager = NodePath("../SubspaceManager")
+
+[node name="ReplicationSystem" parent="." node_paths=PackedStringArray("entity_list", "subspace_manager", "entity_manager") instance=ExtResource("6_6td1r")]
+entity_list = NodePath("..")
+subspace_manager = NodePath("../SubspaceManager")
+entity_manager = NodePath("../EntityManager")
+
+[node name="ConsoleSystem" parent="." node_paths=PackedStringArray("entity_list") instance=ExtResource("9_60s1p")]
+entity_list = NodePath("..")
+
+[connection signal="timeout" from="SyncTimer" to="." method="_on_sync_timer_timeout"]

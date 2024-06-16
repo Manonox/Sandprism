@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cex0ymlxwbbog"]
+
+[ext_resource type="Script" path="res://addons/sandprism-project-workshop-browser/api.gd" id="1_edw8s"]
+
+[node name="SandprismProjectWorkshopAPI" type="Node"]
+script = ExtResource("1_edw8s")

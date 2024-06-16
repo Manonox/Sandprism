@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bow488ww76r64"]
+
+[ext_resource type="Script" path="res://components/quake_player_movement_component/quake_player_movement_component.gd" id="1_8h6tm"]
+
+[node name="QuakePlayerMovementComponent" type="Node"]
+script = ExtResource("1_8h6tm")
+input_structure = {
+"wish_direction": Vector3(0, 0, 0),
+"wish_jump": false
+}
+state_structure = {
+"on_ground": false,
+"position": Vector3(0, 0, 0),
+"touching_ground": false,
+"velocity": Vector3(0, 0, 0)
+}

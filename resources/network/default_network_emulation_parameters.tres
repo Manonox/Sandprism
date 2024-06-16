@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="NetworkEmulationParameters" load_steps=2 format=3 uid="uid://bff02sj43ix7m"]
+
+[ext_resource type="Script" path="res://addons/network_emulation_multiplayer/network_emulation_parameters.gd" id="1_0kpjv"]
+
+[resource]
+script = ExtResource("1_0kpjv")
+ping = 0.0
+ping_variance = 0.0
+drop_chance = 0.0
+duplicate_chance = 0.0

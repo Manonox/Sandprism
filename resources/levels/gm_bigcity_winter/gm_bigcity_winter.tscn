@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://w4sk2p34ki13"]
+
+[ext_resource type="PackedScene" uid="uid://gbgdl4f7gpv" path="res://resources/levels/gm_bigcity_winter/gm_bigcity_winter_world_geometry_trimesh.tscn" id="1_hbn65"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_orchd"]
+sky_top_color = Color(0, 0.0235294, 0.0509804, 1)
+sky_horizon_color = Color(0.0352941, 0.054902, 0.0784314, 1)
+ground_bottom_color = Color(0.0352941, 0.054902, 0.0784314, 1)
+ground_horizon_color = Color(0.0352941, 0.054902, 0.0784314, 1)
+sun_angle_max = 3.33
+sun_curve = 1.37844
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_7t7s0"]
+sky_material = SubResource("ProceduralSkyMaterial_orchd")
+
+[sub_resource type="Environment" id="Environment_iqh44"]
+background_mode = 2
+sky = SubResource("Sky_7t7s0")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 1.33
+glow_enabled = true
+
+[node name="GmBigcityWinter" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.80696, 0.187402, -0.560085, 0, 0.948324, 0.317305, 0.590606, 0.256052, -0.76526, 0, 0, 0)
+light_color = Color(0.101961, 0.109804, 0.109804, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iqh44")
+
+[node name="gm_bigcity_winter" parent="." instance=ExtResource("1_hbn65")]

@@ -1,0 +1,296 @@
+[gd_scene load_steps=7 format=3 uid="uid://cubcy48uv6wh8"]
+
+[ext_resource type="Script" path="res://addons/sandprism-project-workshop-browser/project_workshop_browser.gd" id="1_disna"]
+[ext_resource type="Texture2D" uid="uid://b2cn2pn70tdi" path="res://addons/sandprism-project-workshop-browser/assets/icons/search.svg" id="1_rhu42"]
+[ext_resource type="PackedScene" uid="uid://cex0ymlxwbbog" path="res://addons/sandprism-project-workshop-browser/api.tscn" id="2_8o7xc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gf5dq"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_pnlac"]
+font_color = Color(1, 1, 1, 0.494118)
+
+[sub_resource type="LabelSettings" id="LabelSettings_owhuk"]
+font_color = Color(1, 0, 0, 0.654902)
+
+[node name="ProjectBrowser" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_disna")
+
+[node name="SandprismProjectWorkshopAPI" parent="." instance=ExtResource("2_8o7xc")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TitlePanel" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TitlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TitleInnerPanel" type="Panel" parent="MarginContainer/VBoxContainer/TitlePanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TitlePanel/MarginContainer/TitleInnerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Project Workshop Browser"
+label_settings = SubResource("LabelSettings_gf5dq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Search" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Search"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Search/MarginContainer"]
+layout_mode = 2
+
+[node name="Query" type="LineEdit" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+placeholder_text = "Search"
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/Query"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_rhu42")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="SearchBy" type="OptionButton" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "Search by title"
+popup/item_0/id = 0
+popup/item_1/text = "Search by author"
+popup/item_1/id = 1
+
+[node name="SortBy" type="OptionButton" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "Sort by stars"
+popup/item_0/id = 0
+popup/item_1/text = "Sort by title"
+popup/item_1/id = 1
+
+[node name="SortDirection" type="OptionButton" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+item_count = 2
+selected = 1
+popup/item_0/text = "Ascending"
+popup/item_0/id = 0
+popup/item_1/text = "Descending"
+popup/item_1/id = 1
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="YourProjects" type="CheckBox" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "Your Projects
+"
+
+[node name="OfficialOnly" type="CheckBox" parent="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Official Only"
+
+[node name="SearchResults" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ResultGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/SearchResults"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 4
+
+[node name="NoResultsLabel" type="Label" parent="MarginContainer/VBoxContainer/SearchResults"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "No results..."
+label_settings = SubResource("LabelSettings_pnlac")
+horizontal_alignment = 1
+
+[node name="CantConnectLabel" type="Label" parent="MarginContainer/VBoxContainer/SearchResults"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Can't connect"
+label_settings = SubResource("LabelSettings_owhuk")
+horizontal_alignment = 1
+
+[node name="Navigation" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Navigation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Navigation/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/Navigation/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Previous
+ Page"
+theme_override_font_sizes/font_size = 12
+text = "<"
+text_overrun_behavior = 1
+clip_text = true
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/Navigation/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+
+[node name="PageIndex" type="Label" parent="MarginContainer/VBoxContainer/Navigation/MarginContainer/HBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Page 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="ForwardButton" type="Button" parent="MarginContainer/VBoxContainer/Navigation/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Next Page"
+theme_override_font_sizes/font_size = 12
+text = ">"
+text_overrun_behavior = 1
+clip_text = true
+
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/Search/MarginContainer/Control/Query" to="." method="_on_query_text_submitted"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/HBoxContainer/SearchBy" to="." method="_on_search_by_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/HBoxContainer/SortBy" to="." method="_on_sort_by_item_selected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/HBoxContainer/SortDirection" to="." method="_on_sort_direction_item_selected"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Search/MarginContainer/Control/VBoxContainer/Panel/MarginContainer/HBoxContainer2/OfficialOnly" to="." method="_on_official_only_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Navigation/MarginContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Navigation/MarginContainer/HBoxContainer/ForwardButton" to="." method="_on_forward_button_pressed"]

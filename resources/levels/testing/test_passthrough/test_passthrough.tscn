@@ -1,0 +1,162 @@
+[gd_scene load_steps=24 format=3 uid="uid://cn22nta4yohs2"]
+
+[ext_resource type="PackedScene" uid="uid://dxw7cledbpiia" path="res://addons/proto_csgs/proto_csg_box_3d.tscn" id="1_fopx4"]
+[ext_resource type="Texture2D" uid="uid://btxpd7a4mv1wj" path="res://addons/proto_csgs/textures/dark/texture_13.png" id="2_s25ul"]
+[ext_resource type="PackedScene" uid="uid://cm3ch5gcdm8ja" path="res://addons/proto_csgs/proto_csg_mesh_3d.tscn" id="3_fxjqb"]
+[ext_resource type="Texture2D" uid="uid://byi7wwf0usrfa" path="res://addons/proto_csgs/textures/dark/texture_01.png" id="4_nu8py"]
+[ext_resource type="Texture2D" uid="uid://iloc5han6d3k" path="res://resources/levels/testing/test_passthrough/8e33fa90c71e445c9ce287acc0eea64e-3349659748.jpg" id="5_vrras"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6w62s"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pr1gc"]
+sky_material = SubResource("ProceduralSkyMaterial_6w62s")
+
+[sub_resource type="Environment" id="Environment_iglfv"]
+background_mode = 2
+sky = SubResource("Sky_pr1gc")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wwlb"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("2_s25ul")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rc04"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("4_nu8py")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r11gj"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("4_nu8py")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8d77h"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("4_nu8py")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhk6n"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("4_nu8py")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7nr2v"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("4_nu8py")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuxfh"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("4_nu8py")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nu67"]
+albedo_texture = ExtResource("5_vrras")
+uv1_scale = Vector3(3, 2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rnkqj"]
+material = SubResource("StandardMaterial3D_2nu67")
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_kevx7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vhd7d"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_hw5tl"]
+inner_radius = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugu2d"]
+albedo_color = Color(1, 0.333333, 0.27451, 1)
+metallic = 1.0
+metallic_specular = 0.28
+roughness = 0.27
+
+[sub_resource type="SphereMesh" id="SphereMesh_cq5md"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mh35"]
+albedo_color = Color(1, 0.505882, 0.227451, 1)
+
+[node name="TestPassthrough" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iglfv")
+
+[node name="ProtoCSGBox3D" parent="." instance=ExtResource("1_fopx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(32, 1, 32)
+material = SubResource("StandardMaterial3D_6wwlb")
+block_style = 12
+
+[node name="ProtoCSGMesh3D" parent="." instance=ExtResource("3_fxjqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -2.25)
+material = SubResource("StandardMaterial3D_7rc04")
+
+[node name="ProtoCSGMesh3D2" parent="." instance=ExtResource("3_fxjqb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -2.25)
+material = SubResource("StandardMaterial3D_r11gj")
+
+[node name="ProtoCSGBox3D2" parent="." instance=ExtResource("1_fopx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.125, -4)
+size = Vector3(1, 0.25, 1)
+material = SubResource("StandardMaterial3D_8d77h")
+
+[node name="ProtoCSGBox3D3" parent="." instance=ExtResource("1_fopx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, -4)
+size = Vector3(1, 0.5, 1)
+material = SubResource("StandardMaterial3D_fhk6n")
+
+[node name="ProtoCSGBox3D4" parent="." instance=ExtResource("1_fopx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.375, -4)
+size = Vector3(1, 0.75, 1)
+material = SubResource("StandardMaterial3D_7nr2v")
+
+[node name="ProtoCSGBox3D5" parent="." instance=ExtResource("1_fopx4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, -4)
+material = SubResource("StandardMaterial3D_nuxfh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.836516, 0.482963, 0.258819, -0.5, 0.866025, 1.49012e-08, -0.224144, -0.12941, 0.965926, -0.25, 3.75, 0)
+mesh = SubResource("BoxMesh_rnkqj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.08616e-07, 0, -1, 0, 1, 0, 1, 0, -2.08616e-07, 1.125, 2, -0.466506)
+mesh = SubResource("BoxMesh_rnkqj")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(8.05286e-09, 1, 7.34749e-08, 0.866025, -4.37114e-08, 0.5, 0.5, 5.96046e-08, -0.866026, -0.111916, 4, -1.88476)
+mesh = SubResource("BoxMesh_rnkqj")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 4.095, 0, 0, 0, 0.3, 8.75, 0.25, 7)
+mesh = SubResource("TubeTrailMesh_kevx7")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.62, 0, 0, 0, 0.95823, 0, 0, 0, 0.09, 8.75, 2.19513, 6.8425)
+mesh = SubResource("BoxMesh_vhd7d")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.45, 0, 0, 0, 0.5, 8.75, 1.91, 6.375)
+mesh = SubResource("TorusMesh_hw5tl")
+surface_material_override/0 = SubResource("StandardMaterial3D_ugu2d")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.75, 3.535, 4)
+mesh = SubResource("SphereMesh_cq5md")
+surface_material_override/0 = SubResource("StandardMaterial3D_1mh35")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.75, 3.035, 5.25)
+mesh = SubResource("SphereMesh_cq5md")
+surface_material_override/0 = SubResource("StandardMaterial3D_1mh35")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.75, 1.41, 6.125)
+mesh = SubResource("SphereMesh_cq5md")
+surface_material_override/0 = SubResource("StandardMaterial3D_1mh35")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwh4re5f2owh2"]
+
+[ext_resource type="Script" path="res://prefabs/pawn_system/pawn_system.gd" id="1_fdvcl"]
+
+[node name="PawnSystem" type="Node"]
+script = ExtResource("1_fdvcl")

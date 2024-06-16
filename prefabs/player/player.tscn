@@ -1,0 +1,109 @@
+[gd_scene load_steps=16 format=3 uid="uid://bbc3wfcmim2dn"]
+
+[ext_resource type="PackedScene" uid="uid://b2go35j4fghfi" path="res://components/entity_component/entity_component.tscn" id="1_0snbu"]
+[ext_resource type="Script" path="res://prefabs/player/player.gd" id="1_rey4b"]
+[ext_resource type="PackedScene" uid="uid://cqog55raofvwi" path="res://components/pawn_component/pawn_component.tscn" id="2_r14gl"]
+[ext_resource type="PackedScene" uid="uid://d0lmm5sbrk60h" path="res://addons/mouse_look_component/mouse_look_component.tscn" id="4_4svd8"]
+[ext_resource type="PackedScene" uid="uid://b5lvm67er5bah" path="res://components/broadcast_mouse_look_component/broadcast_mouse_look_component.tscn" id="5_1mnhb"]
+[ext_resource type="PackedScene" uid="uid://bf20evli5mhe0" path="res://components/network_prediction_component/network_prediction_component.tscn" id="6_prbum"]
+[ext_resource type="PackedScene" uid="uid://dsg86jbopmlyq" path="res://components/lua_component/lua_component.tscn" id="7_hhd51"]
+[ext_resource type="PackedScene" uid="uid://bow488ww76r64" path="res://components/quake_player_movement_component/quake_player_movement_component.tscn" id="7_hvtyl"]
+[ext_resource type="Resource" uid="uid://bwqt7afxkfot6" path="res://resources/quake_player_movement_properties/unhinged.tres" id="8_a4qi1"]
+[ext_resource type="PackedScene" uid="uid://d2hprg6esfxpd" path="res://addons/interpolation_component/interpolation_component.tscn" id="9_w74wq"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1cgql"]
+height = 1.0
+radius = 0.4
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_k0df2"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_c0f63"]
+radius = 0.3
+height = 0.6
+radial_segments = 32
+rings = 16
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7b03i"]
+top_radius = 0.4
+bottom_radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3a0ef"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_rey4b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("CylinderShape3D_1cgql")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_k0df2")
+
+[node name="EntityComponent" parent="." node_paths=PackedStringArray("multiplayer_synchronizer", "network_prediction_component") instance=ExtResource("1_0snbu")]
+multiplayer_synchronizer = NodePath("../MultiplayerSynchronizer")
+network_prediction_component = NodePath("../NetworkPredictionComponent")
+
+[node name="PawnComponent" parent="." instance=ExtResource("2_r14gl")]
+
+[node name="MouseLookComponent" parent="." node_paths=PackedStringArray("horizontal_anchor_node", "vertical_anchor_node") instance=ExtResource("4_4svd8")]
+horizontal_anchor_node = NodePath("../Body")
+vertical_anchor_node = NodePath("../Body/Head")
+
+[node name="BroadcastMouseLookComponent" parent="." node_paths=PackedStringArray("pawn_component", "mouse_look_component") instance=ExtResource("5_1mnhb")]
+pawn_component = NodePath("../PawnComponent")
+mouse_look_component = NodePath("../MouseLookComponent")
+
+[node name="NetworkPredictionComponent" parent="." node_paths=PackedStringArray("player", "entity_component", "pawn_component", "player_movement") instance=ExtResource("6_prbum")]
+player = NodePath("..")
+entity_component = NodePath("../EntityComponent")
+pawn_component = NodePath("../PawnComponent")
+player_movement = NodePath("../QuakePlayerMovementComponent")
+
+[node name="LuaComponent" parent="." instance=ExtResource("7_hhd51")]
+entity_type = &"Player"
+
+[node name="QuakePlayerMovementComponent" parent="." node_paths=PackedStringArray("player", "horizontal_anchor", "vertical_anchor") instance=ExtResource("7_hvtyl")]
+player = NodePath("..")
+properties = ExtResource("8_a4qi1")
+horizontal_anchor = NodePath("../Body")
+vertical_anchor = NodePath("../Body/Head")
+input_structure = {
+"look_rotation": Vector3(0, 0, 0),
+"wish_direction": Vector3(0, 0, 0),
+"wish_fly": false,
+"wish_fly_direction": Vector3(0, 0, 0),
+"wish_jump": false
+}
+
+[node name="InterpolationComponent" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_w74wq")]
+target = NodePath("../Body")
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="Head" type="Node3D" parent="Body"]
+
+[node name="Camera" type="Camera3D" parent="Body/Head"]
+unique_name_in_owner = true
+fov = 100.0
+
+[node name="Visual" type="Node3D" parent="Body/Head"]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Head/Visual"]
+mesh = SubResource("SphereMesh_c0f63")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body/Head/Visual"]
+transform = Transform3D(0.1, 0, 0, 0, -5.96046e-09, 0.1, 0, -0.1, -5.96046e-09, 0.1, 0.05, -0.2)
+mesh = SubResource("CylinderMesh_7b03i")
+surface_material_override/0 = SubResource("StandardMaterial3D_3a0ef")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Body/Head/Visual"]
+transform = Transform3D(0.1, 0, 0, 0, -5.96046e-09, 0.1, 0, -0.1, -5.96046e-09, -0.1, 0.05, -0.2)
+mesh = SubResource("CylinderMesh_7b03i")
+surface_material_override/0 = SubResource("StandardMaterial3D_3a0ef")
+
+[connection signal="peer_changed" from="PawnComponent" to="." method="_on_pawn_component_peer_changed"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhswsw2w7pgmj"]
+
+[ext_resource type="PackedScene" uid="uid://dsg86jbopmlyq" path="res://components/lua_component/lua_component.tscn" id="1_1d0f7"]
+[ext_resource type="Texture2D" uid="uid://dauqmrh7hmuml" path="res://addons/proto_csgs/textures/red/texture_07.png" id="2_roe1l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gua87"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_flior"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cas2l"]
+albedo_texture = ExtResource("2_roe1l")
+uv1_triplanar = true
+
+[node name="LuaBoxTest" type="RigidBody3D"]
+
+[node name="LuaComponent" parent="." instance=ExtResource("1_1d0f7")]
+entity_type = &"LuaBoxTest"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gua87")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_flior")
+surface_material_override/0 = SubResource("StandardMaterial3D_cas2l")

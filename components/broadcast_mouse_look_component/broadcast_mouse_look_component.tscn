@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5lvm67er5bah"]
+
+[ext_resource type="Script" path="res://components/broadcast_mouse_look_component/broadcast_mouse_look_component.gd" id="1_cgb2c"]
+
+[node name="BroadcastMouseLookComponent" type="Node"]
+script = ExtResource("1_cgb2c")

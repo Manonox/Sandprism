@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PlayerMovementProperties" load_steps=2 format=3 uid="uid://bwqt7afxkfot6"]
+
+[ext_resource type="Script" path="res://components/quake_player_movement_component/quake_player_movement_properties.gd" id="1_drk41"]
+
+[resource]
+script = ExtResource("1_drk41")
+gravity = 19.0
+jump_power = 6.0
+float_height = 0.75
+max_speed = 7.0
+ground_acceleration = 7.0
+friction = 4.0
+stopspeed = 2.0
+air_acceleration = 1e+07
+air_limit = 2.0

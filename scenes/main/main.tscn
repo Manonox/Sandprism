@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgsbcbkhvvh8m"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_31juq"]
+[ext_resource type="PackedScene" uid="uid://buonuolkn03hx" path="res://prefabs/client_only/client_only.tscn" id="2_6vlys"]
+[ext_resource type="PackedScene" uid="uid://bythnpitcx62d" path="res://prefabs/entity_list/entity_list.tscn" id="3_hlmxy"]
+[ext_resource type="Resource" uid="uid://bhbpxmjiu3yug" path="res://resources/levels/testing/test_passthrough/test_passthrough.tres" id="4_5nlp5"]
+[ext_resource type="PackedScene" uid="uid://bgkiekretjbrg" path="res://prefabs/lua_instance_system/lua_instance_system.tscn" id="5_d84je"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_31juq")
+client_only_scene = ExtResource("2_6vlys")
+
+[node name="EntityList" parent="." instance=ExtResource("3_hlmxy")]
+unique_name_in_owner = true
+main_level = ExtResource("4_5nlp5")
+
+[node name="LuaInstanceSystem" parent="." node_paths=PackedStringArray("entity_list") instance=ExtResource("5_d84je")]
+entity_list = NodePath("../EntityList")

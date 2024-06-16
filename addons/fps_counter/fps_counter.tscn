@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgordc6ux2a8m"]
+
+[ext_resource type="Script" path="res://addons/fps_counter/fps_counter.gd" id="1_8x4ny"]
+
+[node name="FPSCounter" type="Label"]
+text = "FPS: "
+script = ExtResource("1_8x4ny")

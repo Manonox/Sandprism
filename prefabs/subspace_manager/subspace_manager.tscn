@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://nvxrdr1ac0xp"]
+
+[ext_resource type="Script" path="res://prefabs/subspace_manager/subspace_manager.gd" id="1_tybqx"]
+[ext_resource type="PackedScene" uid="uid://d404c8kqo8qh" path="res://prefabs/subspace_manager/subspace.tscn" id="2_1g240"]
+
+[node name="SubspaceManager" type="Node"]
+script = ExtResource("1_tybqx")
+subspace_scene = ExtResource("2_1g240")
+
+[node name="Subspaces" type="Node" parent="."]
+
+[node name="SubspaceViewer" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

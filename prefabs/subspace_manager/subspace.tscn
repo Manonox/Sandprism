@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://d404c8kqo8qh"]
+
+[ext_resource type="Script" path="res://prefabs/subspace_manager/subspace.gd" id="1_3wj6s"]
+[ext_resource type="World3D" uid="uid://ixy3smexh276" path="res://prefabs/subspace_manager/default_subspace_world3d.tres" id="1_o4bpy"]
+[ext_resource type="PackedScene" uid="uid://fn4ue284pmgv" path="res://addons/motion_blur/motion_blur.tscn" id="3_vqicc"]
+
+[node name="Subspace" type="SubViewport"]
+world_3d = ExtResource("1_o4bpy")
+script = ExtResource("1_3wj6s")
+
+[node name="LevelContainer" type="Node" parent="."]
+
+[node name="Entities" type="Node" parent="."]
+
+[node name="MotionBlur" parent="." instance=ExtResource("3_vqicc")]
+falloff_radius = 4.0
